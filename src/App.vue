@@ -2,21 +2,21 @@
   <v-app id="app">
     <v-main>
       <Header/>
-      <HelloWorld/>
+      <Contents/>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import Header from './components/Header'
-import HelloWorld from './components/HelloWorld'
+import Contents from './components/Contents'
 
 export default {
   name: 'App',
 
   components: {
     Header,
-    HelloWorld,
+    Contents
   },
 }
 </script>

@@ -11,7 +11,7 @@ import firestore from '../firebase'
 dayjs.locale('ja')
 
 export default {
-  name: 'HelloWorld',
+  name: 'Contents',
 
   async created() {
     await this.getRoomsData()
