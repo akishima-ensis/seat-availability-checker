@@ -1,40 +1,64 @@
 <template>
   <v-container>
-    <p>{{ msg }}</p>
+    <p>{{ dates()[0] | dayjs }}</p>
   </v-container>
 </template>
 
 <script>
+import dayjs from 'dayjs'
 import firestore from '../firebase'
+
+dayjs.locale('ja')
 
 export default {
   name: 'HelloWorld',
 
-  created() {
-    this.getRooms()
+  async created() {
+    await this.getRoomsData()
   },
 
   data() {
     return {
-      msg: 'hello'
+      roomsData: {},
+      rooms: {}
+    }
+  },
+
+  filters: {
+    dayjs(date) {
+      return dayjs(date).format('YYYY年MM月DD日 dddd')
     }
   },
 
   methods: {
-    async getRooms() {
+    async getRoomsData() {
       return firestore
           .collection('rooms')
           .get()
           .then(docs => {
-            let data = {}
+            let roomsData = {}
             docs.forEach(doc => {
-              data[doc.id] = doc.data()
+              roomsData[doc.id] = doc.data()
             })
-            console.log(data)
+            this.roomsData = roomsData
           })
     },
 
+    // test(roomsData) {
+    //   const dates = Object.keys(roomsData).sort()
+    //   console.log(dayjs(dates[0]).format('YYYY年MM月DD日 dddd'))
+    //
+    //   dates.forEach(date => {
+    //     for (let room in roomsData[date]) {
+    //       console.log(room)
+    //     }
+    //   })
+    // },
 
+    dates() {
+      return Object.keys(this.roomsData).sort()
+    }
   }
 }
 </script>
+<!--20201112-->
