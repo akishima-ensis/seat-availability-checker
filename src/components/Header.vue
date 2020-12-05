@@ -1,9 +1,18 @@
 <template>
-  <v-app-bar dense flat outlined dark>アキシマエンシス空席チェッカー</v-app-bar>
+  <v-app-bar dense flat @click="jumpTop">アキシマエンシス空席チェッカー</v-app-bar>
 </template>
 
 <script>
+import router from '@/router'
+
 export default {
-  name: 'Header'
+  name: 'Header',
+  methods: {
+    jumpTop() {
+      if (this.$route.path === '/about') {
+        router.push('/')
+      }
+    }
+  }
 }
 </script>

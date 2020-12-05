@@ -1,16 +1,17 @@
 <template>
   <v-container>
+    <v-card class="mb-4 mx-auto" width="500">
+      <v-card-text>
+        当サイトは<a href="https://webreserv.library.akishima.tokyo.jp/webReserv/AreaInfo/Login">昭島市民図書館 - WEB予約</a>から取得した空席情報を可視化し提供することを目的に開設されたものです。当サイトは昭島市民の個人による非公式サイトであり、昭島市とは一切関係ありません。当サイトについて詳しくは<a @click="jumpAbout">こちら</a>から。
+      </v-card-text>
+    </v-card>
     <div v-for="(value, key) in 6" :key="key">
-      <v-card class="mb-2 mx-auto" width="500">
+      <v-card class="mb-4 mx-auto" width="500">
         <v-progress-linear v-if="!loaded" absolute indeterminate color="#46C4B1"/>
         <v-card-title>{{ roomName[key] }}</v-card-title>
         <v-card-subtitle>{{ date }}</v-card-subtitle>
         <v-card-text>
-          <chart
-              v-if="loaded"
-              :chart-data="chart[key][0]"
-              :options="chart[key][1]"
-          />
+          <chart v-if="loaded" :chart-data="chart[key][0]" :options="chart[key][1]"/>
         </v-card-text>
       </v-card>
     </div>
@@ -21,6 +22,7 @@
 import dayjs from 'dayjs'
 import firestore from '../firebase'
 import Chart from './Chart'
+import router from "@/router";
 dayjs.locale('ja')
 
 
@@ -65,7 +67,6 @@ export default {
               date = doc.id
               roomsData = doc.data()
             })
-
             this.date = dayjs(date).format('YYYY年MM月DD日 時点')
             this.roomsData = roomsData
           })
@@ -133,7 +134,7 @@ export default {
         tooltips: {
           callbacks: {
             title: (tooltipItem) => {
-              return tooltipItem[0].label + '時点'
+              return tooltipItem[0].label + ' 時点'
             },
             label: (tooltipItem) => {
               return '空席数: ' + tooltipItem.yLabel + '席'
@@ -142,6 +143,10 @@ export default {
         }
       }
       return [chartData, options]
+    },
+
+    jumpAbout() {
+      router.push('about')
     }
   }
 }
