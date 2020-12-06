@@ -1,6 +1,6 @@
 <template>
-  <v-app-bar dense flat>
-    <v-toolbar-title>アキシマエンシス空席チェッカー</v-toolbar-title>
+  <v-app-bar app dense flat>
+    アキシマエンシス空席チェッカー
     <v-spacer></v-spacer>
     <div>
       <v-switch v-model="darkMode" :prepend-icon="themeIcon" hide-details label=""></v-switch>
@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import router from '@/router'
-
 export default {
   name: 'Header',
   data() {
@@ -26,13 +24,6 @@ export default {
   watch: {
     darkMode() {
       this.$vuetify.theme.dark = this.darkMode
-    }
-  },
-  methods: {
-    jumpTop() {
-      if (this.$route.path === '/about') {
-        router.push('/')
-      }
     }
   }
 }

@@ -1,11 +1,13 @@
 <template>
   <v-container>
-    <div>
-      <h1 class="gray--text display-1 mb-3 text-center">当サイトについて</h1>
+    <div class="mx-auto">
+
+      <h2>当サイトについて</h2>
 
       <v-card class="mt-3 mb-4 mx-auto" width="500">
         <v-card-text>
-          当サイトはアキシマエンシスの学習室における空席情報を可視化し提供することを目的に開設された非公式のものです。
+          当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものを提供するために、昭島市民の有志が開設したものです。<br><br>
+          <a @click="jumpTop">ページトップへ</a>
         </v-card-text>
       </v-card>
 
@@ -14,7 +16,7 @@
           データの取得方法について
         </v-card-title>
         <v-card-text>
-          <p>当サイトは<a href="https://webreserv.library.akishima.tokyo.jp/webReserv/AreaInfo/Login">昭島市民図書館 - WEB予約</a>から1分間隔で空席情報を取得、保存しています。取得したデータは30日間保存されます。</p>
+          当サイトが利用している空席状況のデータは<a href="https://webreserv.library.akishima.tokyo.jp/webReserv/AreaInfo/Login">昭島市民図書館 - WEB予約</a>から1分間隔で取得したものです。取得したデータは30日間保存されます。
         </v-card-text>
       </v-card>
 
@@ -23,7 +25,7 @@
           ソースコードについて
         </v-card-title>
         <v-card-text>
-          当サイトのソースコードは<a href="https://github.com/akishima-ensis/seat-availability-checker">GitHubのリポジトリ</a>にあります。
+          当サイトのソースコードはMITライセンスで公開されており、誰でも自由に利用することができます。詳しくは<a href="https://github.com/akishima-ensis/seat-availability-checker">GitHubリポジトリ</a>にあります。
         </v-card-text>
       </v-card>
 
@@ -32,8 +34,22 @@
           作者について
         </v-card-title>
         <v-card-text>
-          <p>Twitter: <a href="https://twitter.com/qxi_">miya（@qxi_）</a></p>
-          <p>メールアドレス: <a href="mailto:miyayanenn@gmail.com">miyayanenn@gmail.com</a></p>
+          Twitter: <a href="https://twitter.com/qxi_">miya（@qxi_）</a><br>
+          メールアドレス: <a href="mailto:miyayanenn@gmail.com">miyayanenn@gmail.com</a>
+        </v-card-text>
+      </v-card>
+
+      <v-card class="mb-4 mx-auto" width="500">
+        <v-card-title>
+          Google Analyticsの利用について
+        </v-card-title>
+        <v-card-text>
+          当サイトでは、サービス向上やサイトの改善のためにGoogle LLCの提供するアクセス分析ツールであるGoogle Analyticsを利用した計測を行なっています。<br><br>
+          Google Analyticsでは当サイトが発行するクッキー（Cookie）等を利用して、Webサイトの利用データ（アクセス状況、トラフィック、閲覧環境、IPアドレスなど）を収集しております。クッキーの利用に関してはGoogleのプライバシーポリシーと規約に基づいております。<br><br>
+          Google Analyticsの利用規約及びプライバシーポリシーに関する説明については、Google Analyticsのサイトをご覧ください。<br><br>
+          <a href="https://marketingplatform.google.com/about/analytics/terms/jp/">・Google アナリティクス利用規約</a><br>
+          <a href="https://policies.google.com/privacy?hl=ja">・Google プライバシーポリシー</a><br>
+          <a href="https://support.google.com/analytics/answer/6004245?hl=ja">・Google Analyticsについての詳細情報</a>
         </v-card-text>
       </v-card>
 
@@ -42,12 +58,23 @@
           免責事項
         </v-card-title>
         <v-card-text>
-          <p>当サイトに掲載されている情報の正確性については万全を期しておりますが、当サイトの管理者は利用者が当サイトを用いて行う行為について一切の責任を追うものではありません。</p>
-          <p>当サイトの利用に起因した利用者の損害及び利用者が第三者に与えた損害に対して、責任を追うものではありません。</p>
-          <p>当サイトに掲載されている情報は、予告なしに変更又は削除することがあります。</p>
+          当サイトに掲載されている情報の正確性については万全を期しておりますが、当サイトの管理者は利用者が当サイトを用いて行う行為について一切の責任を追うものではありません。<br>
+          当サイトの利用に起因した利用者の損害及び利用者が第三者に与えた損害に対して、責任を追うものではありません。<br>
+          当サイトに掲載されている情報は、予告なしに変更又は削除することがあります。<br>
         </v-card-text>
       </v-card>
-    </div>
 
+    </div>
   </v-container>
 </template>
+
+<script>
+export default {
+  name: 'About',
+  methods: {
+    jumpTop() {
+      this.$router.push('/')
+    }
+  }
+}
+</script>

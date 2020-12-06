@@ -1,10 +1,13 @@
 <template>
   <v-container>
+
     <v-card class="mb-4 mx-auto" width="500">
       <v-card-text>
-        当サイトは<a href="https://webreserv.library.akishima.tokyo.jp/webReserv/AreaInfo/Login">昭島市民図書館 - WEB予約</a>から取得した空席情報を可視化し提供することを目的に開設されたものです。当サイトは昭島市民の個人による非公式サイトであり、昭島市とは一切関係ありません。当サイトについて詳しくは<a @click="jumpAbout">こちら</a>から。
+        当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものを提供するために、昭島市民の有志が開設したものです。詳しくは<a @click="jumpAbout">当サイトについて</a>をご覧ください。<br><br>
+        リアルタイムで空席状況を取得できるLINEBotの友達登録は<a href="https://line.me/R/ti/p/%40425qffdj">こちら</a>から行えます。
       </v-card-text>
     </v-card>
+
     <div v-for="(value, key) in 6" :key="key">
       <v-card class="mb-4 mx-auto" width="500">
         <v-progress-linear v-if="!loaded" absolute indeterminate color="#46C4B1"/>
@@ -15,16 +18,17 @@
         </v-card-text>
       </v-card>
     </div>
+
   </v-container>
 </template>
 
 <script>
 import dayjs from 'dayjs'
 import firestore from '../firebase'
-import Chart from './Chart'
-import router from "@/router";
-dayjs.locale('ja')
 
+import Chart from './Chart'
+
+dayjs.locale('ja')
 
 export default {
   name: 'Contents',
@@ -73,7 +77,6 @@ export default {
     },
 
     test() {
-
       const roomsData = this.roomsData
       const roomsDataKeys = Object.keys(roomsData).sort()
 
@@ -146,7 +149,7 @@ export default {
     },
 
     jumpAbout() {
-      router.push('about')
+      this.$router.push('/about')
     }
   }
 }
