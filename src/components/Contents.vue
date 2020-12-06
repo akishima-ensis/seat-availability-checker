@@ -104,7 +104,7 @@ export default {
       this.loaded = true
     },
 
-    createChart(update, seatsNum, totalSeatsNum) {
+    createChart: function (update, seatsNum, totalSeatsNum) {
       const chartData = {
         labels: update,
         datasets: [
@@ -128,8 +128,12 @@ export default {
             {
               ticks: {
                 beginAtZero: true,
-                min: 0,
-                max: totalSeatsNum
+                max: totalSeatsNum,
+                userCallback: (label) => {
+                  if (Math.floor(label) === label) {
+                    return label
+                  }
+                }
               }
             }
           ],
