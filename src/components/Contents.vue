@@ -24,11 +24,12 @@
 
 <script>
 import dayjs from 'dayjs'
+import ja from 'dayjs/locale/ja'
 import firestore from '../firebase'
 
 import Chart from './Chart'
 
-dayjs.locale('ja')
+dayjs.locale(ja)
 
 export default {
   name: 'Contents',
@@ -44,9 +45,10 @@ export default {
 
   data() {
     return {
-      roomsData: {},
       loaded: false,
       date: '',
+      roomsData: {},
+      dateList: [],
       roomName: [
           '学習席（有線LAN有）',
           '学習席',
@@ -65,33 +67,34 @@ export default {
           .collection('rooms')
           .get()
           .then(docs => {
-            let date = ''
+            let dateList = []
             let roomsData = []
             docs.forEach(doc => {
-              date = doc.id
-              roomsData = doc.data()
+              dateList.push(dayjs(doc.id).format('YYYY/MM/DD (ddd)'))
+              roomsData.push(doc.data())
             })
-            this.date = dayjs(date).format('YYYY年MM月DD日 時点')
-            this.roomsData = roomsData
+            this.dateList = dateList.reverse()
+            this.roomsData = roomsData.reverse()
           })
     },
 
     test() {
-      const roomsData = this.roomsData
+      this.date = this.dateList[0]
+      const roomsData = this.roomsData[0]
       const roomsDataKeys = Object.keys(roomsData).sort()
 
       let update = []
-      let seatsNum = [[],[],[],[],[],[]]
+      let seatsNum = [[], [], [], [], [], []]
       let totalSeatsNum = []
 
       for (let i=0; i<roomsDataKeys.length; i++) {
         if (i % 15 === 0) {
           const rooms = roomsData[roomsDataKeys[i]]
-          update.push(dayjs(rooms[0]['update']).format('HH:mm')) // 更新時間
+          update.push(dayjs(rooms['update']).format('HH:mm')) // 更新時間
           for (let j=0; j<6; j++) {
-            seatsNum[j].push(rooms[j]['seats_num']) // 空席数
+            seatsNum[j].push(rooms['data'][j]['seats_num']) // 空席数
             if (i===0) {
-              totalSeatsNum.push(rooms[j]['total_seats_num']) // 総席数
+              totalSeatsNum.push(rooms['data'][j]['total_seats_num']) // 総席数
             }
           }
         }
