@@ -23,14 +23,14 @@
 
     <div class="text-center">
       <v-dialog v-model="dialog" width="500">
-        <v-card>
+        <v-card outlined>
+          <v-card-title>
+            空席チェッカー for LINE Bot
+          </v-card-title>
           <v-card-text>
-            アキシマエンシスの学習席の空席状況をリアルタイムで取得できるLINEbotです
+            アキシマエンシスの学習席の空席状況をリアルタイムで取得できるLINEbotです。以下のQRコードを読み取るかQRコードをタッチすることで友達登録を行うことができます。<br><br>
             <div class="text-center">
-              <img alt="LINE-QR" :src="image" width="180" height="180">
-            </div>
-            <div class="text-center">
-              <a href="https://lin.ee/e3L1AGH">友達登録</a>
+              <a href="https://lin.ee/e3L1AGH"><img alt="LINE-QR" :src="image" width="180" height="180"></a>
             </div>
           </v-card-text>
         </v-card>
