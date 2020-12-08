@@ -1,5 +1,7 @@
 # seat-availability-checker
 
+![Firebase deploy](https://github.com/akishima-ensis/seat-availability-checker/workflows/Firebase%20deploy/badge.svg)
+
 ## Project setup
 ```
 npm install
