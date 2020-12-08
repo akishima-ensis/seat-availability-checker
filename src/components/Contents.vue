@@ -21,21 +21,19 @@
       </v-card>
     </div>
 
-    <div class="text-center">
-      <v-dialog v-model="dialog" width="500">
-        <v-card outlined>
-          <v-card-title>
-            空席チェッカー for LINE Bot
-          </v-card-title>
-          <v-card-text>
-            アキシマエンシスの学習席の空席状況をリアルタイムで取得できるLINEbotです。以下のQRコードを読み取るかQRコードをタッチすることで友達登録を行うことができます。<br><br>
-            <div class="text-center">
-              <a href="https://lin.ee/e3L1AGH"><img alt="LINE-QR" :src="image" width="180" height="180"></a>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-dialog>
-    </div>
+    <v-dialog v-model="dialog" width="500">
+      <v-card outlined>
+        <v-card-title>
+          空席チェッカー for LINE Bot
+        </v-card-title>
+        <v-card-text>
+          アキシマエンシスの学習席の空席状況をリアルタイムで取得できるLINEbotです。以下のQRコードを読み取るかQRコードをタッチすることで友達登録を行うことができます。<br><br>
+          <div class="text-center">
+            <a href="https://lin.ee/e3L1AGH"><img alt="LINE-QR" :src="image" width="180" height="180"></a>
+          </div>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
 
   </v-container>
 </template>
@@ -96,6 +94,9 @@ export default {
             })
             this.dateList = dateList.reverse()
             this.roomsData = roomsData.reverse()
+          })
+          .catch((error) => {
+            console.log(error)
           })
     },
 
