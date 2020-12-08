@@ -17,8 +17,7 @@ export default {
     }
   },
   created() {
-    let displayMode = localStorage.getItem('displayMode')
-    switch (displayMode) {
+    switch (localStorage.getItem('displayMode')) {
       case null:
         this.darkMode = true
         localStorage.setItem('displayMode', 'dark')
