@@ -13,7 +13,21 @@ export default {
   name: 'Header',
   data() {
     return {
-      darkMode: true
+      darkMode: undefined
+    }
+  },
+  created() {
+    let displayMode = localStorage.getItem('displayMode')
+    switch (displayMode) {
+      case null:
+        this.darkMode = true
+        localStorage.setItem('displayMode', 'dark')
+        break
+      case 'dark':
+        this.darkMode = true
+        break
+      case 'default':
+        this.darkMode = false
     }
   },
   computed: {
@@ -23,6 +37,11 @@ export default {
   },
   watch: {
     darkMode() {
+      if (this.darkMode) {
+        localStorage.setItem('displayMode', 'dark')
+      } else {
+        localStorage.setItem('displayMode', 'default')
+      }
       this.$vuetify.theme.dark = this.darkMode
     }
   }
