@@ -149,19 +149,22 @@ export default {
           display: false
         },
         scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-                max: totalSeatsNum,
-                userCallback: (label) => {
-                  if (Math.floor(label) === label) {
-                    return label
-                  }
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: totalSeatsNum,
+              userCallback: (label) => {
+                if (Math.floor(label) === label) {
+                  return label
                 }
               }
             }
-          ],
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false,
+            }
+          }]
         },
         tooltips: {
           callbacks: {
