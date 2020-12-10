@@ -2,9 +2,10 @@
   <v-container>
     <div class="mx-auto">
 
-      <h2>当サイトについて</h2>
-
       <v-card class="mt-3 mb-4 mx-auto" width="500">
+        <v-card-title>
+          当サイトについて
+        </v-card-title>
         <v-card-text>
           当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものを提供するために、昭島市民の有志が開設したものです。<br><br>
           <a @click="jumpTop">ページトップへ</a>
@@ -13,7 +14,7 @@
 
       <v-card class="mb-4 mx-auto" width="500">
         <v-card-title>
-          データの取得方法について
+          データの取得について
         </v-card-title>
         <v-card-text>
           当サイトが利用している空席状況のデータは<a href="https://webreserv.library.akishima.tokyo.jp/webReserv/AreaInfo/Login">昭島市民図書館 - WEB予約</a>から1分間隔で取得したものです。取得したデータは30日間保存されます。
