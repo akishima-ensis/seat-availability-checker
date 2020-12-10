@@ -8,7 +8,7 @@
         </v-card-title>
         <v-card-text>
           当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものを提供するために、昭島市民の有志が開設したものです。<br><br>
-          <a @click="jumpTop">ページトップへ</a>
+          <a @click="$router.push('/')">ページトップへ</a>
         </v-card-text>
       </v-card>
 
@@ -68,14 +68,3 @@
     </div>
   </v-container>
 </template>
-
-<script>
-export default {
-  name: 'About',
-  methods: {
-    jumpTop() {
-      this.$router.push('/')
-    }
-  }
-}
-</script>
