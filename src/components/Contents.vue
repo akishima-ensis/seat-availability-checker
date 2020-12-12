@@ -8,18 +8,14 @@
       </v-card-text>
     </v-card>
 
-    <div v-for="(value, key) in 6" :key="key">
-      <v-card class="mb-4 mx-auto" width="500">
-        <v-progress-linear v-if="!loaded" absolute indeterminate color="#46C4B1"/>
-        <v-card-title>{{ roomName[key] }}</v-card-title>
-        <v-card-subtitle>
-          {{ date }}
-        </v-card-subtitle>
-        <v-card-text>
-          <chart v-if="loaded" :chart-data="chart[key][0]" :options="chart[key][1]"/>
-        </v-card-text>
-      </v-card>
-    </div>
+    <v-card class="mb-4 mx-auto" width="500" v-for="n in 6" :key="n">
+      <v-progress-linear v-if="!loaded" absolute indeterminate color="#46C4B1"/>
+      <v-card-title>{{ roomName[n-1] }}</v-card-title>
+      <v-card-subtitle>{{ date }}</v-card-subtitle>
+      <v-card-text>
+        <chart v-if="loaded" :chart-data="chart[n-1][0]" :options="chart[n-1][1]"/>
+      </v-card-text>
+    </v-card>
 
     <v-dialog v-model="dialog" width="500">
       <v-card outlined>
@@ -129,7 +125,7 @@ export default {
       this.loaded = true
     },
 
-    createChart: function (update, seatsNum, totalSeatsNum) {
+    createChart (update, seatsNum, totalSeatsNum) {
       const chartData = {
         labels: update,
         datasets: [
