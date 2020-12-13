@@ -9,11 +9,13 @@
     </v-card>
 
     <v-card class="mb-4 mx-auto" width="500" v-for="n in 6" :key="n">
-      <v-progress-linear v-if="!loaded" absolute indeterminate color="#46C4B1"/>
+      <v-progress-linear v-if="loading" absolute indeterminate color="#46C4B1"/>
       <v-card-title>{{ roomName[n-1] }}</v-card-title>
-      <v-card-subtitle>{{ date }}</v-card-subtitle>
+      <v-card-subtitle>
+        <v-overflow-btn :label="dateList[0]" :items="dateList" v-model="date"/>
+      </v-card-subtitle>
       <v-card-text>
-        <chart v-if="loaded" :chart-data="chart[n-1][0]" :options="chart[n-1][1]"/>
+        <chart v-if="!loading" :chart-data="charts[n-1][0]" :options="charts[n-1][1]"/>
       </v-card-text>
     </v-card>
 
@@ -53,17 +55,15 @@ export default {
 
   async created() {
     await this.getRoomsData()
-    await this.test()
+        this.date = this.dateList[0]
   },
 
   data() {
     return {
-      loaded: false,
-      dialog: false,
       image: image,
-      date: '',
-      roomsData: {},
-      dateList: [],
+      dialog: false,
+      loading: true,
+
       roomName: [
           '学習席（有線LAN有）',
           '学習席',
@@ -72,60 +72,62 @@ export default {
           'グループ学習室',
           'ティーンズ学習室'
       ],
-      chart: []
+      dateList: [],
+      roomsList: [],
+
+      date: '',
+      update: [],
+      seatsNum: [],
+      totalSeatsNum: 0,
+
+      charts: [],
     }
   },
 
   methods: {
-    async getRoomsData() {
+
+     async getRoomsData() {
       return firestore
           .collection('rooms')
           .get()
           .then(docs => {
             let dateList = []
-            let roomsData = []
+            let roomsList = []
             docs.forEach(doc => {
               dateList.push(dayjs(doc.id).format('YYYY/MM/DD (ddd)'))
-              roomsData.push(doc.data())
+              roomsList.push(doc.data())
             })
             this.dateList = dateList.reverse()
-            this.roomsData = roomsData.reverse()
+            this.roomsList = roomsList.reverse()
+
           })
           .catch((error) => {
             console.log(error)
           })
     },
 
-    test() {
-      this.date = this.dateList[0]
-      const roomsData = this.roomsData[0]
+    pickRoomsData(index) {
+      const roomsData = this.roomsList[index]
       const roomsDataKeys = Object.keys(roomsData).sort()
-
       let update = []
       let seatsNum = [[], [], [], [], [], []]
       let totalSeatsNum = []
-
-      for (let i=0; i<roomsDataKeys.length; i++) {
+      for (let i = 0; i < roomsDataKeys.length; i++) {
         if (i % 15 === 0) {
           const rooms = roomsData[roomsDataKeys[i]]
           update.push(dayjs(rooms['update']).format('HH:mm')) // 更新時間
-          for (let j=0; j<6; j++) {
+          for (let j = 0; j < 6; j++) {
             seatsNum[j].push(rooms['data'][j]['seats_num']) // 空席数
-            if (i===0) {
+            if (i === 0) {
               totalSeatsNum.push(rooms['data'][j]['total_seats_num']) // 総席数
             }
           }
         }
       }
-
-      for (let i=0; i<6; i++) {
-        const chart = this.createChart(update, seatsNum[i], totalSeatsNum[i])
-        this.chart.push(chart)
-      }
-      this.loaded = true
+      return [update, seatsNum, totalSeatsNum]
     },
 
-    createChart (update, seatsNum, totalSeatsNum) {
+    chartTemplate(update, seatsNum, totalSeatsNum) {
       const chartData = {
         labels: update,
         datasets: [
@@ -176,8 +178,26 @@ export default {
       return [chartData, options]
     },
 
+    createChart() {
+      this.loading = true
+      this.charts = []
+      const index = this.dateList.indexOf(this.date)
+      const pickedRoomsData = this.pickRoomsData(index)
+      for (let i = 0; i < 6; i++) {
+        const chart = this.chartTemplate(pickedRoomsData[0], pickedRoomsData[1][i], pickedRoomsData[2][i])
+        this.charts.push(chart)
+      }
+      this.loading = false
+    },
+
     jumpAbout() {
       this.$router.push('/about')
+    }
+  },
+
+  watch: {
+    date() {
+      this.createChart()
     }
   }
 }
