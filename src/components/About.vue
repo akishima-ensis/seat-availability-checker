@@ -10,12 +10,23 @@
       </v-card-text>
     </v-card>
 
+    <v-card class="mt-3 mb-4 mx-auto" width="500">
+      <v-card-title>
+        作者について
+      </v-card-title>
+      <v-card-text>
+        <v-icon small>mdi-github</v-icon> : <a href="https://github.com/miya">miya</a><br>
+        <v-icon small>mdi-twitter</v-icon> : <a href="https://twitter.com/qxi_">miya（@qxi_）</a><br>
+        <v-icon small>mdi-email</v-icon> : <a href="mailto:miyayanenn@gmail.com">miyayanenn@gmail.com</a>
+      </v-card-text>
+    </v-card>
+
     <v-card class="mb-4 mx-auto" width="500">
       <v-card-title>
         データの取得について
       </v-card-title>
       <v-card-text>
-        当サイトが利用している空席状況のデータは<a href="https://webreserv.library.akishima.tokyo.jp/webReserv/AreaInfo/Login">昭島市民図書館 - WEB予約</a>から1分ごとに取得したものです。取得したデータは30日間保存されます。
+        当サイトが利用している空席状況のデータは<a href="https://webreserv.library.akishima.tokyo.jp/webReserv/AreaInfo/Login">昭島市民図書館 - WEB予約</a>からプログラムを用いて1分ごとに自動的に取得したものです。取得したデータは30日間保存されます。
       </v-card-text>
     </v-card>
 
@@ -25,17 +36,6 @@
       </v-card-title>
       <v-card-text>
         当サイトのソースコードはMITライセンスで公開されており、誰でも自由に利用することができます。詳しくは<a href="https://github.com/akishima-ensis/seat-availability-checker">GitHubリポジトリ</a>にあります。
-      </v-card-text>
-    </v-card>
-
-    <v-card class="mt-3 mb-4 mx-auto" width="500">
-      <v-card-title>
-        作者について
-      </v-card-title>
-      <v-card-text>
-        <v-icon small>mdi-github</v-icon> : <a href="https://github.com/miya">miya</a><br>
-        <v-icon small>mdi-twitter</v-icon> : <a href="https://twitter.com/qxi_">miya（@qxi_）</a><br>
-        <v-icon small>mdi-email</v-icon> : <a href="mailto:miyayanenn@gmail.com">miyayanenn@gmail.com</a>
       </v-card-text>
     </v-card>
 
