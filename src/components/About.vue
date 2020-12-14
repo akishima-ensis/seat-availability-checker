@@ -5,7 +5,7 @@
         当サイトについて
       </v-card-title>
       <v-card-text>
-        当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものを提供しています。昭島市民の有志が開設したもので非公式となっています。<br><br>
+        当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものです。昭島市民の有志が開設したもので非公式となっています。<br><br>
         <a @click="$router.push('/')">ページトップへ</a>
       </v-card-text>
     </v-card>
@@ -36,6 +36,15 @@
         <v-icon small>mdi-github</v-icon> : <a href="https://github.com/miya">miya</a><br>
         <v-icon small>mdi-twitter</v-icon> : <a href="https://twitter.com/qxi_">miya（@qxi_）</a><br>
         <v-icon small>mdi-email</v-icon> : <a href="mailto:miyayanenn@gmail.com">miyayanenn@gmail.com</a>
+      </v-card-text>
+    </v-card>
+
+    <v-card class="mt-3 mb-4 mx-auto" width="500">
+      <v-card-title>
+        当サイトに使われている画像について
+      </v-card-title>
+      <v-card-text>
+        当サイトに使われているファビコンは<a href="https://rakugakiicon.com/">落書きアイコン</a>様からお借りしたフリー画像です。かわいい。
       </v-card-text>
     </v-card>
 
