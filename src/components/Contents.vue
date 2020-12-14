@@ -1,12 +1,14 @@
 <template>
   <v-container>
+
+    <!--サイト概要-->
     <v-card class="mb-4 mx-auto" width="500">
       <v-card-text>
-        当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものを提供するために、昭島市民の有志が開設したものです。詳しくは<a @click="$router.push('/about')">当サイトについて</a>をご覧ください。
-        リアルタイムで空席状況を取得できるLINEBotの友達登録は<a @click="dialog = !dialog">こちら</a>から行えます。
+        当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものです。過去30日分の空席状況を見ることができます。詳しくは<a @click="$router.push('/about')">当サイトについて</a>をご覧ください。リアルタイムで空席状況を取得できるLINEBotの友達登録は<a @click="dialog = !dialog">こちら</a>から行えます。
       </v-card-text>
     </v-card>
 
+    <!--空席状況を可視化したグラフ-->
     <v-card class="mb-4 mx-auto" width="500" v-for="n in 6" :key="n">
       <v-progress-linear v-if="loading" absolute indeterminate color="#46C4B1"/>
       <v-card-title>{{ roomName[n-1] }}</v-card-title>
@@ -18,6 +20,7 @@
       </v-card-text>
     </v-card>
 
+    <!-- lineの友達追加を促すダイアログ-->
     <v-dialog v-model="dialog" width="500">
       <v-card outlined>
         <v-card-title>
@@ -26,7 +29,7 @@
         <v-card-text>
           アキシマエンシスの学習席の空席状況をリアルタイムで取得できるLINEbotです。以下のQRコードを読み取るかQRコードをタッチすることで友達登録を行うことができます。<br><br>
           <div class="text-center">
-            <a href="https://lin.ee/e3L1AGH"><img alt="LINE-QR" :src="image" width="180" height="180"></a>
+            <a href="https://lin.ee/e3L1AGH"><img alt="LINE-QR" :src="imageLineqr" width="180" height="180"></a>
           </div>
         </v-card-text>
       </v-card>
@@ -40,7 +43,7 @@ import ja from 'dayjs/locale/ja'
 import firestore from '../firebase'
 
 import Chart from './Chart'
-import image from '../assets/lineqr.png'
+import imageLineqr from '../assets/lineqr.png'
 
 dayjs.locale(ja)
 
@@ -58,7 +61,7 @@ export default {
 
   data() {
     return {
-      image: image,
+      imageLineqr: imageLineqr,
       dialog: false,
       loading: true,
 

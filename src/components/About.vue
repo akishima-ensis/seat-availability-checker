@@ -5,7 +5,7 @@
         当サイトについて
       </v-card-title>
       <v-card-text>
-        当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものを提供するために、昭島市民の有志が開設したものです。<br><br>
+        当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものを提供しています。昭島市民の有志が開設したもので非公式となっています。<br><br>
         <a @click="$router.push('/')">ページトップへ</a>
       </v-card-text>
     </v-card>
@@ -15,7 +15,7 @@
         データの取得について
       </v-card-title>
       <v-card-text>
-        当サイトが利用している空席状況のデータは<a href="https://webreserv.library.akishima.tokyo.jp/webReserv/AreaInfo/Login">昭島市民図書館 - WEB予約</a>から1分間隔で取得したものです。取得したデータは30日間保存されます。
+        当サイトが利用している空席状況のデータは<a href="https://webreserv.library.akishima.tokyo.jp/webReserv/AreaInfo/Login">昭島市民図書館 - WEB予約</a>から1分ごとに取得したものです。取得したデータは30日間保存されます。
       </v-card-text>
     </v-card>
 
