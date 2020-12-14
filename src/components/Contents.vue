@@ -85,7 +85,6 @@ export default {
   },
 
   methods: {
-
      async getRoomsData() {
       return firestore
           .collection('rooms')
@@ -106,7 +105,7 @@ export default {
           })
     },
 
-    pickRoomsData(index) {
+    createChartData(index) {
       const roomsData = this.roomsList[index]
       const roomsDataKeys = Object.keys(roomsData).sort()
       let update = []
@@ -182,9 +181,9 @@ export default {
       this.loading = true
       this.charts = []
       const index = this.dateList.indexOf(this.date)
-      const pickedRoomsData = this.pickRoomsData(index)
+      const chartData = this.createChartData(index)
       for (let i = 0; i < 6; i++) {
-        const chart = this.chartTemplate(pickedRoomsData[0], pickedRoomsData[1][i], pickedRoomsData[2][i])
+        const chart = this.chartTemplate(chartData[0], chartData[1][i], chartData[2][i])
         this.charts.push(chart)
       }
       this.loading = false
