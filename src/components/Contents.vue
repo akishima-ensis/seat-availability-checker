@@ -12,7 +12,7 @@
       <v-progress-linear v-if="loading" absolute indeterminate color="#46C4B1"/>
       <v-card-title>{{ roomName[n-1] }}</v-card-title>
       <v-card-subtitle>
-        <v-overflow-btn :label="dateList[0]" :items="dateList" v-model="date"/>
+        <v-overflow-btn :label="dateList[0]" :items="dateList" v-model="date" :disabled="loading"/>
       </v-card-subtitle>
       <v-card-text>
         <chart v-if="!loading" :chart-data="charts[n-1][0]" :options="charts[n-1][1]"/>
