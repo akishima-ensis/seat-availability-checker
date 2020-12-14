@@ -3,7 +3,7 @@
 
     <v-card class="mb-4 mx-auto" width="500">
       <v-card-text>
-        当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものを提供するために、昭島市民の有志が開設したものです。詳しくは<a @click="jumpAbout">当サイトについて</a>をご覧ください。
+        当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものを提供するために、昭島市民の有志が開設したものです。詳しくは<a @click="$router.push('/about')">当サイトについて</a>をご覧ください。
         リアルタイムで空席状況を取得できるLINEBotの友達登録は<a @click="dialog = !dialog">こちら</a>から行えます。
       </v-card-text>
     </v-card>
@@ -188,10 +188,6 @@ export default {
       }
       this.loading = false
     },
-
-    jumpAbout() {
-      this.$router.push('/about')
-    }
   },
 
   watch: {
