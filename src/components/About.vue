@@ -33,8 +33,9 @@
         作者について
       </v-card-title>
       <v-card-text>
-        Twitter: <a href="https://twitter.com/qxi_">miya（@qxi_）</a><br>
-        メールアドレス: <a href="mailto:miyayanenn@gmail.com">miyayanenn@gmail.com</a>
+        <v-icon small>mdi-github</v-icon> : <a href="https://github.com/miya">miya</a><br>
+        <v-icon small>mdi-twitter</v-icon> : <a href="https://twitter.com/qxi_">miya（@qxi_）</a><br>
+        <v-icon small>mdi-email</v-icon> : <a href="mailto:miyayanenn@gmail.com">miyayanenn@gmail.com</a>
       </v-card-text>
     </v-card>
 
