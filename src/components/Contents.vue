@@ -1,6 +1,5 @@
 <template>
   <v-container>
-
     <v-card class="mb-4 mx-auto" width="500">
       <v-card-text>
         当サイトはアキシマエンシス（昭島市教育福祉総合センター）の学習室における1日分の空席状況を可視化したものを提供するために、昭島市民の有志が開設したものです。詳しくは<a @click="$router.push('/about')">当サイトについて</a>をご覧ください。
@@ -32,7 +31,6 @@
         </v-card-text>
       </v-card>
     </v-dialog>
-
   </v-container>
 </template>
 
@@ -76,10 +74,6 @@ export default {
       roomsList: [],
 
       date: '',
-      update: [],
-      seatsNum: [],
-      totalSeatsNum: 0,
-
       charts: [],
     }
   },
@@ -98,7 +92,6 @@ export default {
             })
             this.dateList = dateList.reverse()
             this.roomsList = roomsList.reverse()
-
           })
           .catch((error) => {
             console.log(error)
