@@ -35,7 +35,7 @@
         ソースコードについて
       </v-card-title>
       <v-card-text>
-        当サイトのソースコードはMITライセンスで公開されており、誰でも自由に利用することができます。詳しくは<a href="https://github.com/akishima-ensis/seat-availability-checker">GitHubリポジトリ</a>にあります。
+        当サイトのソースコードはGitHubの<a href="https://github.com/akishima-ensis/seat-availability-checker">リポジトリ</a>に公開されています。
       </v-card-text>
     </v-card>
 
